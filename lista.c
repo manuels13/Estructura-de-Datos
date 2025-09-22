@@ -104,9 +104,10 @@ int main(void){
  //insertar(&head,9);
  //iterar(head);
  //insertarEnMedio(head,2,8);
- eliminarcabeza(&head);
- eliminarcola(head);
-iterar(head);
-    
+ //eliminarcabeza(&head);
+ //eliminarcola(head);
+// iterar(head);
+printf("Hola mundo");
+
     return 0;
 }
