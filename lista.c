@@ -106,7 +106,8 @@ int main(void){
  //insertarEnMedio(head,2,8);
  //eliminarcabeza(&head);
  //eliminarcola(head);
-//iterar(head);
-    
+// iterar(head);
+printf("Hola feo");
+
     return 0;
 }
