@@ -1,10 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-struct Node{
-    int data;
-    struct Node * next;
-}; // Alias para la estructura
+#include "listaenlazada.h"
 
 void cambiar(struct Node *cabeza){
   while(cabeza!=NULL){
@@ -13,11 +7,7 @@ void cambiar(struct Node *cabeza){
   }
 
 }
-void iterar (struct Node *cabeza) {
-  while (cabeza != NULL) {
-    printf("%d ",cabeza->data);
-    cabeza = cabeza->next;
-  }}
+
   int numerodenodos(struct Node *head){
     int contador=0;
     while(head!=NULL){
@@ -70,15 +60,6 @@ void iterar (struct Node *cabeza) {
 
 
   }
-void eliminarcabeza(struct Node **ptrhead){
-  if(ptrhead==NULL){
-    printf("Error");
-    return;
-  }
-  struct Node *temp = *ptrhead;
-  *ptrhead = (*ptrhead) -> next;
-  free(temp);
-}
 void eliminarcola(struct Node *ptrhead){
   while(ptrhead -> next!=NULL){
     ptrhead = ptrhead -> next;
@@ -107,7 +88,8 @@ int main(void){
  //eliminarcabeza(&head);
  //eliminarcola(head);
 // iterar(head);
-printf("Hola feo");
 
+
+  
     return 0;
 }
