@@ -42,7 +42,7 @@ int size(struct Node * queue){
   }
   return contador;
 }
-void enqueue(struct Node **ptrqueue, struct Person * person){
+/* void enqueue(struct Node **ptrqueue, struct Person * person){
     struct Node *nuevo = malloc(sizeof(struct Node));
     if(nuevo == NULL){
         printf("Error al alocar memoria");
@@ -60,24 +60,40 @@ void enqueue(struct Node **ptrqueue, struct Person * person){
         }
         actual->next = nuevo;
     }
-}
+}*/
+
   /**
- * @brief Obtiene el primer elemento de la cola sin eliminarlo
- * @param queue Cola de la que se quiere obtener el primer elemento
- * @return Persona en la primera posición de la cola
+ * @brief Añade un elemento al final de la cola
+ * @param queue Puntero a la cola
+ * @param person Puntero a persona a añadir
  */
-struct Person * first(struct Node * queue){
-  if(queue==NULL){
+void enqueue(struct Node **ptrqueue, struct Person * person){
+  struct Node *nuevo=malloc(sizeof(struct Node));
+  if(nuevo==NULL){
+    printf("Error al alocar memoria");
     exit(-1);
   }
-  return queue -> person;
-}
+  nuevo->person=person;
 
+  if(*ptrqueue==NULL){
+    *ptrqueue=nuevo;
+    (*ptrqueue)->next=ptrqueue;
+  }else{
+     
+     nuevo->next= (*ptrqueue)->next;
+    (*ptrqueue)->next=nuevo;
+    *ptrqueue=nuevo;
+
+  }
+
+
+}
+    
 /**
  * @brief Elimina el primer elemento de la cola
  * @param queue Puntero a la cola
  */
-void dequeue(struct Node **ptrqueue){
+/* void dequeue(struct Node **ptrqueue){
   if((*ptrqueue) -> next == NULL){
     free(*ptrqueue);
     *ptrqueue=NULL;
@@ -88,6 +104,26 @@ void dequeue(struct Node **ptrqueue){
     aux = NULL;
   }
 }
+  */
+/**
+ * @brief Elimina el primer elemento de la cola
+ * @param queue Puntero a la cola
+ */
+ void dequeue(struct Node **ptrqueue){
+  if(*ptrqueue==NULL){
+    printf("La lista esta vacia");
+    exit(-1);
+  }
+  else if((*ptrqueue)->next ==*ptrqueue){
+    free(*ptrqueue);
+    *ptrqueue=NULL;
+  }else{
+    struct Node *temp= (*ptrqueue)->next;
+    (*ptrqueue)->next = temp->next;
+    free(temp);
+  }
+ }
+  
 /**
  * @brief Limpia la cola
  * @param queue Puntero a la cola
@@ -107,6 +143,8 @@ void display(struct Node * queue){
     printf("COLA VACIA");
     return;
   }
+  struct Node *temp=queue;
+  
   while(queue!=NULL){
     printf("%s de edad %d",queue->person->name,queue->person->age);
     queue=queue->next;
