@@ -5,7 +5,7 @@
  * @param ptrStack  Dirección de memoria del puntero a la pila a crear.
  */
 void stack_ll_init(struct Stack_ll **ptrStack){
-  struct Stack_ll (*ptrStack)=malloc(sizeof(struct Stack_ll);)
+  struct Stack_ll (*ptrStack)=malloc(sizeof(struct Stack_ll));
   (*ptrStack)->size=0;
   (*ptrStack)->top=NULL;
 }
@@ -15,15 +15,20 @@ void stack_ll_init(struct Stack_ll **ptrStack){
  * @param element  Elemento a añadir
  */
 void stack_ll_push(struct Stack_ll *ptrStack, struct Node element){
-  if(ptrStack->size==0){
-    ptrStack->size++;
-    ptrStack->top=(&element);
-  }else{
-    struct Node *element = malloc(sizeof(struct Node));
-    element.next=ptrStack->top;
-    ptrStack->top=&element;
-    ptrStack->size++;
+  struct Node *new = malloc(sizeof(struct Node));
+   *new= element;
+  if(new==NULL){
+    perror("Error al alocar memoria");
+    return;
   }
+  if(ptrStack->top==NULL){
+    ptrStack->top=new;
+    new->next=NULL;
+  }else{
+   new->next=ptrStack->top;
+   ptrStack->top=new;
+  }
+  ptrStack->size++;
 }
 /**
  * @brief Devuelve el elemento en la cima de la pila
@@ -31,10 +36,10 @@ void stack_ll_push(struct Stack_ll *ptrStack, struct Node element){
  * @return Puntero al elemento en la cima de la pila 
  */
 struct Node stack_ll_top(struct Stack_ll * ptrStack){
-  if(ptrStack->top==NULL){
-    return NULL;
+  if(ptrStack->top==NULL||ptrStack==NULL){
+    exit(1);
   }else{
-    return ptrStack->top;
+    return *(ptrStack->top);
 
   }
 }
