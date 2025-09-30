@@ -1,5 +1,14 @@
 #include "canales.h"
 #include <stdlib.h>
+#include<string.h>
+
+string enumerado(enum Tipo tipo){
+    if(tipo==0){
+        return "TV"
+    }else{
+        return "Radio"
+    }
+}
 
 /**
  * @brief Crea un nuevo canal.
@@ -40,7 +49,10 @@ void destruir(struct T_Canal **canales)
  */
 void mostrar(struct T_Canal *canales)
 {
-    ;
+    while(canales!=NULL){
+        printf("Canal: %s en posicion %d de tipo %s",canales->nombre,canales->pos,canales->tipo);
+        canales=canales->sig;
+    }
 }
 
 /**
